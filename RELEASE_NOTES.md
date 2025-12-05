@@ -2,6 +2,66 @@
 
 > **Personal Note**: Memory Bank is my personal hobby project that I develop for my own use in coding projects. As this is a personal project, I don't maintain an issues tracker or actively collect feedback. However, if you're using these rules and encounter issues, one of the great advantages is that you can ask the Cursor AI directly to modify or update the rules to better suit your specific workflow. The system is designed to be adaptable by the AI, allowing you to customize it for your own needs without requiring external support.
 
+## Version 0.8 - Enhanced Commands and Workflow
+
+> Building upon the token-optimized workflows established in v0.7-beta, this release focuses on improved command integration and workflow enhancements.
+
+### 🌟 Major Features
+
+#### Cursor 2.0 Commands Integration _(Enhanced)_
+- Native integration with Cursor 2.0 commands feature
+- Improved command discovery and usage
+- Streamlined workflow transitions
+- Better integration with Cursor's native features
+
+#### Workflow Refinements _(Enhanced)_
+- Enhanced command-to-command transitions
+- Improved context preservation between commands
+- Better error handling and recovery
+- More intuitive workflow guidance
+
+### 🔄 Process Improvements
+
+#### Command System Enhancements
+- Improved command documentation
+- Better command discovery mechanisms
+- Enhanced workflow routing logic
+- Streamlined command execution
+
+### 📚 Documentation Enhancements
+- Updated README with command-focused workflow
+- Enhanced command documentation
+- Improved migration guides
+- Better examples and usage patterns
+
+### 🛠 Technical Improvements
+- Optimized command execution
+- Improved rule loading for commands
+- Enhanced context management
+- Better integration with Cursor 2.0 features
+
+### 📋 Known Issues
+- None reported in current release
+
+### 🔜 Upcoming Features
+- Further workflow optimizations
+- Enhanced command capabilities
+- Improved context management
+- Additional integration features
+
+### 📝 Notes
+- This release builds upon v0.7-beta's token optimization foundation
+- Enhanced command integration and workflow improvements
+- No manual migration required
+- Backward compatible with v0.7-beta workflows
+
+### 🔧 Requirements
+- Requires Cursor version 2.0 or higher (commands feature)
+- Compatible with Claude 4 Sonnet (recommended) and newer models
+- Compatible with all existing Memory Bank v0.7-beta installations
+
+---
+
 ## Version 0.7-beta - Token-Optimized Workflows
 
 > Building upon the architectural foundations established in v0.6-beta.1, this release introduces significant token efficiency optimizations and enhanced workflow capabilities with substantial improvements in context management.
@@ -59,7 +119,7 @@
 - **VAN Mode**: Efficient complexity determination with minimal overhead
 - **PLAN Mode**: Complexity-appropriate planning templates
 - **CREATIVE Mode**: Progressive documentation with tabular comparisons
-- **IMPLEMENT Mode**: Streamlined implementation guidance
+- **BUILD Mode**: Streamlined implementation guidance
 - **REFLECT Mode**: Context-aware review mechanisms
 - **ARCHIVE Mode**: Efficient knowledge preservation
 

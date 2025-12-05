@@ -1,88 +1,82 @@
-# Memory Bank System v0.7-beta
+# Memory Bank System v0.8
 
-## A Message from the Creator
-
-Hey everyone! 👋
-
-When I built cursor-memory-bank, it was my personal project to solve a problem I faced daily as a software engineer. With extensive experience in the field, I knew there had to be a better way to harness AI for actual development work.
-
-Your **2,400+ stars** and incredible feedback proved this vision resonated - but also showed me what I was really after wasn't just setup tools. **I wanted working prototypes.**
-
-So I went back to my software engineering roots and built something that delivers on the original promise: **Three-Tier Orchestration Architecture** that uses advanced prompt engineering and specialized agents to handle all the heavy lifting - from natural language request to browser-tested application.
-
-**What cursor-memory-bank started as my personal solution, this completes:**
-- Say "implement this PRD.md" → Get complete project breakdown with TaskMaster coordination
-- Say "build a user management system with RBAC" → Get 5-tier role hierarchy with 28 permissions
-- Say "create an e-commerce platform" → Get product catalog, cart, checkout, and payment integration
-- Say "add real-time collaboration features" → Get WebSocket implementation with conflict resolution
-
-Drawing on my engineering experience, the new system addresses major limitations while keeping the same core vision: **AI that actually builds working software.** As we discover new challenges, we add specialized agents to keep evolving the system.
-
-cursor-memory-bank will stay here as the foundation that made this possible. But if you want to see where my engineering journey leads, check out the evolution:
-
-**👉 [Claude Code Sub-Agent Collective](https://github.com/vanzan01/claude-code-sub-agent-collective)**
-
-Thank you for making my personal project a success. The future is even more exciting! 🚀
-
-*- vanzan*
-
----
-
-A token-optimized, hierarchical task management system that integrates with Cursor custom modes for efficient development workflows.
+A token-optimized, hierarchical task management system that uses Cursor 2.0 commands for efficient development workflows.
 
 ```mermaid
 graph TD
-    Main["Memory Bank System"] --> Modes["Custom Modes"]
+    Main["Memory Bank System"] --> Commands["Cursor 2.0 Commands"]
     Main --> Rules["Hierarchical Rule Loading"]
     Main --> Visual["Visual Process Maps"]
     Main --> Token["Token Optimization"]
+    Main --> Memory["Memory Bank Files"]
     
-    Modes --> VAN["VAN: Initialization"]
-    Modes --> PLAN["PLAN: Task Planning"]
-    Modes --> CREATIVE["CREATIVE: Design"]
-    Modes --> IMPLEMENT["IMPLEMENT: Building"]
-    Modes --> REFLECT["REFLECT: Review"]
-    Modes --> ARCHIVE["ARCHIVE: Documentation"]
+    Commands --> VAN["/van: Initialization"]
+    Commands --> PLAN["/plan: Task Planning"]
+    Commands --> CREATIVE["/creative: Design"]
+    Commands --> BUILD["/build: Implementation"]
+    Commands --> REFLECT["/reflect: Review"]
+    Commands --> ARCHIVE["/archive: Documentation"]
+    
+    Memory --> Tasks["tasks.md"]
+    Memory --> Active["activeContext.md"]
+    Memory --> Progress["progress.md"]
+    Memory --> Creative["creative/"]
+    Memory --> Archive["archive/"]
     
     style Main fill:#4da6ff,stroke:#0066cc,color:white
-    style Modes fill:#f8d486,stroke:#e8b84d,color:black
+    style Commands fill:#f8d486,stroke:#e8b84d,color:black
     style Rules fill:#80ffaa,stroke:#4dbb5f,color:black
     style Visual fill:#d9b3ff,stroke:#b366ff,color:black
     style Token fill:#ff9980,stroke:#ff5533,color:black
+    style Memory fill:#f9d77e,stroke:#d9b95c,color:black
 ```
 
 > **Personal Note**: Memory Bank is my personal hobby project that I develop for my own use in coding projects. As this is a personal project, I don't maintain an issues tracker or actively collect feedback. However, if you're using these rules and encounter issues, one of the great advantages is that you can ask the Cursor AI directly to modify or update the rules to better suit your specific workflow. The system is designed to be adaptable by the AI, allowing you to customize it for your own needs without requiring external support.
 
 ## About Memory Bank
 
-Memory Bank is a personal project that provides a structured approach to development using specialized modes for different phases of the development process. It uses a hierarchical rule loading architecture that loads only the rules needed for each phase, optimizing token usage and providing tailored guidance.
+Memory Bank is a structured development workflow system that uses Cursor 2.0 commands to guide you through different phases of the development process. It uses a hierarchical rule loading architecture that loads only the rules needed for each phase, optimizing token usage and providing tailored guidance.
+
+### How It Works
+
+Version 0.8 moves from cursor custom modes to cursor commands.  Memory Bank operates through **six specialized commands** that work together as an integrated workflow:
+
+1. **`/van`** - Initializes projects, detects platform, determines task complexity
+2. **`/plan`** - Creates detailed implementation plans based on complexity level
+3. **`/creative`** - Explores design options for components requiring design decisions
+4. **`/build`** - Systematically implements planned changes
+5. **`/reflect`** - Reviews completed work and documents lessons learned
+6. **`/archive`** - Creates comprehensive documentation and updates Memory Bank
+
+Each command reads from and updates a shared **Memory Bank** directory (`memory-bank/`), maintaining persistent context across the entire workflow.
 
 ### Token-Optimized Architecture
 
-Version 0.7-beta introduces significant token optimization improvements:
+Version 0.7 introduced significant token optimization improvements:
 
-- **Hierarchical Rule Loading**: Only loads essential rules initially with specialized lazy-loading
+- **Hierarchical Rule Loading**: Only loads essential rules initially with specialized lazy-loading (~70% token reduction)
 - **Progressive Documentation**: Implements concise templates that scale with task complexity
-- **Optimized Mode Transitions**: Preserves critical context efficiently between modes
-- **Level-Specific Workflows**: Adapts documentation requirements to task complexity
+- **Optimized Command Transitions**: Preserves critical context efficiently between commands
+- **Level-Specific Workflows**: Adapts documentation requirements to task complexity (Levels 1-4)
+- **Lazy-Loaded Specialized Rules**: Loads specialized rules only when needed (e.g., architecture vs UI/UX design)
 
 See the [Memory Bank Optimizations](MEMORY_BANK_OPTIMIZATIONS.md) document for detailed information about all optimization approaches.
 
-### Beyond Basic Custom Modes
+### Command-Based Workflow System
 
-While Cursor's documentation describes custom modes as primarily standalone configurations with basic prompts and tool selections, Memory Bank significantly extends this concept:
+Memory Bank transforms development into a structured, phase-based process:
 
-- **Graph-Based Mode Integration**: Modes are interconnected nodes in a development workflow rather than isolated tools
-- **Workflow Progression**: Modes are designed to transition from one to another in a logical sequence (VAN → PLAN → CREATIVE → IMPLEMENT → REFLECT → ARCHIVE)
-- **Shared Memory**: Persistent state maintained across mode transitions via Memory Bank files
-- **Adaptive Behavior**: Each mode adjusts its recommendations based on project complexity
-- **Built-in QA Functions**: QA capabilities can be called from any mode for technical validation
+- **Graph-Based Command Integration**: Commands are interconnected nodes in a development workflow
+- **Workflow Progression**: Commands transition from one to another in a logical sequence (`/van` → `/plan` → `/creative` → `/build` → `/reflect` → `/archive`)
+- **Shared Memory**: Persistent state maintained across command transitions via Memory Bank files
+- **Adaptive Behavior**: Each command adjusts its recommendations based on project complexity level
+- **Progressive Rule Loading**: Commands load only necessary rules, reducing context window usage
 
-This approach transforms custom modes from simple AI personalities into components of a coordinated development system with specialized phases working together.
+This approach transforms development from ad-hoc coding into a coordinated system with specialized phases working together.
 
-### CREATIVE Mode and Claude's "Think" Tool
+### CREATIVE Command and Claude's "Think" Tool
 
-The CREATIVE mode in Memory Bank is conceptually based on Anthropic's Claude "Think" tool methodology, as described in their [engineering blog](https://www.anthropic.com/engineering/claude-think-tool). The v0.7-beta implements an optimized version with:
+The `/creative` command is conceptually based on Anthropic's Claude "Think" tool methodology, as described in their [engineering blog](https://www.anthropic.com/engineering/claude-think-tool). Version 0.8 implements an optimized version with:
 
 - Progressive documentation with tabular option comparison
 - "Detail-on-demand" approach that preserves token efficiency
@@ -93,183 +87,360 @@ For a detailed explanation of how Memory Bank implements these principles, see t
 
 ## Key Features
 
+- **Cursor 2.0 Commands**: Native integration with Cursor's commands feature - no setup required
 - **Hierarchical Rule Loading**: Load only the essential rules with specialized lazy-loading
 - **Progressive Documentation**: Concise templates that scale with task complexity
-- **Unified Context Transfer**: Efficient context preservation between modes
-- **Mode-Specific Visual Maps**: Clear visual representations for each development phase
+- **Unified Context Transfer**: Efficient context preservation between commands via Memory Bank
+- **Command-Specific Visual Maps**: Clear visual representations for each development phase
 - **Level-Specific Workflows**: Adapted processes based on complexity (Levels 1-4)
 - **Platform-Aware Commands**: Automatically adapts commands to your operating system
+- **Memory Bank Integration**: All commands read from and update shared Memory Bank files
 
 ## Installation Instructions
 
 ### Prerequisites
 
-- **Cursor Editor**: Version 0.48 or higher is required.
-- **Custom Modes**: Feature must be enabled in Cursor (Settings → Features → Chat → Custom modes).
-<img src="assets/open_custom_modes.png" alt="Opening Custom Modes Menu"/>
-
-- **AI Model**: Claude 4 Sonnet or Claude 4 Opus is recommended for best results, especially for CREATIVE mode's "Think" tool methodology.
+- **Cursor Editor**: Version 2.0 or higher is required (commands feature)
+- **AI Model**: Claude 4 Sonnet or Claude 4 Opus is recommended for best results, especially for `/creative` command's "Think" tool methodology
 
 ### Step 1: Get the Files
 
 Simply clone this repository into your project directory:
 
-```
+```bash
 git clone https://github.com/vanzan01/cursor-memory-bank.git
 ```
 
 #### Alternative (Manual)
 
-After extracting it from the ZIP file, follow the steps below.
+After extracting it from the ZIP file:
 
-- Copy the `.cursor` and `custom_modes` folders to the project directory
+- Copy the `.cursor` folder to your project directory (contains both rules and commands)
+- The `custom_modes` folder is kept for reference but not required
 
-Note: other documents are not necessary for memory bank operation, they are explanatory documents. You can copy them to a folder like `memory_bank_documents`.
+**Note**: Other documents are not necessary for Memory Bank operation - they are explanatory documents. You can copy them to a folder like `memory_bank_documents` if desired.
 
-### Step 2: Setting Up Custom Modes in Cursor
+### Step 2: Using Commands
 
-**This is the most critical and challenging part of the setup.** You'll need to manually create six custom modes in Cursor and copy the instruction content from the provided files:
+**Commands are ready to use immediately!** No additional setup required.
 
-#### How to Add a Custom Mode in Cursor
+1. **Type `/` in the Cursor chat** to see available commands:
+   - `/van` - Initialization & entry point
+   - `/plan` - Task planning
+   - `/creative` - Design decisions
+   - `/build` - Code implementation
+   - `/reflect` - Task reflection
+   - `/archive` - Task archiving
 
-1. Open Cursor and click on the mode selector in the chat panel
-2. Select "Add custom mode"
-<img src="assets/add_custom_mode.png" alt="Add Custom Mode"/>
+2. **Start with `/van`** to initialize your project:
+   ```
+   /van Initialize project for adding user authentication feature
+   ```
 
-3. In the configuration screen:
-   - Enter the mode name (you can include emoji icons like 🔍, 📋, 🎨, ⚒️ by copy-pasting them at the beginning of the name)
-   - Select an icon from Cursor's limited predefined options
-   - Add a shortcut (optional)
-   - Check the required tools
-   - Click on **Advanced options**
-   - In the empty text box that appears at the bottom, paste the custom instruction content from the corresponding file
+3. **Follow the workflow** - each command will guide you to the next step
 
-#### Mode Configuration
-
-For each mode, configure as follows (If MCPs are showing, you can keep them on, they probably won't work):
-
-1. **VAN MODE** (Initialization)
-   - **Name**: 🔍 VAN
-   - **Tools**: Enable "Codebase Search", "Read File", "Terminal", "List Directory", "Fetch Rules"
-   - **Advanced options**: Paste from `custom_modes/van_instructions.md`
-
-
-<img src="assets/van_mode_1.png" height="300" style="display: inline-block;"/> <img src="assets/van_mode_2.png" height="300" style="display: inline-block;"/>
-
-2. **PLAN MODE** (Task Planning)
-   - **Name**: 📋 PLAN
-   - **Tools**: Enable "Codebase Search", "Read File", "Terminal", "List Directory"
-   - **Advanced options**: Paste from `custom_modes/plan_instructions.md`
-
-<img src="assets/plan_mode_1.png" height="300"/> <img src="assets/plan_mode_2.png" height="300" style="display: inline-block;"/>
-
-3. **CREATIVE MODE** (Design Decisions)
-   - **Name**: 🎨 CREATIVE
-   - **Tools**: Enable "Codebase Search", "Read File", "Terminal", "List Directory", "Edit File", "Fetch Rules"
-   - **Advanced options**: Paste from `custom_modes/creative_instructions.md`
-
-<img src="assets/creative_mode_1.png" height="300"/> <img src="assets/creative_mode_2.png" height="300" style="display: inline-block;"/>
-
-4. **IMPLEMENT MODE** (Code Implementation)
-   - **Name**: ⚒️ IMPLEMENT
-   - **Tools**: Enable all tools
-   - **Advanced options**: Paste from `custom_modes/implement_instructions.md`
-
-<img src="assets/implement_mode_1.png" height="300"/> <img src="assets/implement_mode_2.png" height="300" style="display: inline-block;"/>
-
-5. **REFLECT & ARHIVE MODE** (Review)
-   - **Name**: 🔍 REFLECT or ARCHIVE
-   - **Tools**: Enable "Codebase Search", "Read File", "Terminal", "List Directory"
-   - **Advanced options**: Paste from `custom_modes/reflect_archive_instructions.md`
-
-<img src="assets/reflect_mode_1.png" height="300"/> <img src="assets/reflect_mode_2.png" height="300" style="display: inline-block;"/>
-   
-
-> **Note**: REFLECT and ARCHIVE instructions are combined in a single file and mode to optimize for Cursor's character and custom mode limits  while maintaining functionality. Thanks to GitHub user @joshmac007 for implementing this optimization.
-
-For additional help on setting up custom modes in Cursor, refer to the [official Cursor documentation on custom modes](https://docs.cursor.com/chat/custom-modes).
-
-### QA Functionality
-
-QA is not a separate custom mode but rather a set of validation functions that can be called from any mode. You can invoke QA capabilities by typing "QA" in any mode when you need to perform technical validation. This approach provides flexibility to conduct verification at any point in the development process.
+See [`.cursor/commands/README.md`](.cursor/commands/README.md) for detailed command documentation.
 
 ## Basic Usage
 
-1. **Start with VAN Mode**:
-   - Switch to VAN mode in Cursor
-   - Type "VAN" to initiate the initialization process
-   - VAN will analyze your project structure and determine complexity
+### Quick Start
+
+1. **Initialize with `/van`**:
+   ```
+   /van Add user authentication to the application
+   ```
+   - Analyzes your project structure
+   - Determines task complexity (Level 1-4)
+   - Creates Memory Bank structure if needed
+   - Routes to appropriate next command
 
 2. **Follow the Workflow Based on Complexity**:
-   - **Level 1 tasks**: May proceed directly to IMPLEMENT after VAN
-   - **Level 2 tasks**: Simplified workflow (VAN → PLAN → IMPLEMENT → REFLECT)
-   - **Level 3-4 tasks**: Full workflow (VAN → PLAN → CREATIVE → IMPLEMENT → REFLECT → ARCHIVE)
-   - **At any point**: Type "QA" to perform technical validation
 
-
-<img src="assets/chat_van.png" height="50"/> <img src="assets/chat_plan.png" height="50" style="display: inline-block;"/> <img src="assets/chat_implement.png" height="50" style="display: inline-block;"/> <img src="assets/chat_creative.png" height="50" style="display: inline-block;"/> <img src="assets/chat_implement.png" height="50" style="display: inline-block;"/> <img src="assets/chat_reflect.png" height="50" style="display: inline-block;"/> <img src="assets/chat_archive.png" height="50" style="display: inline-block;"/>
-
-3. **Mode-Specific Commands**:
+   **Level 1 (Quick Bug Fix):**
    ```
-   VAN - Initialize project and determine complexity
-   PLAN - Create detailed implementation plan
-   CREATIVE - Explore design options for complex components
-   IMPLEMENT - Systematically build planned components
-   REFLECT - Review and document lessons learned
-   ARCHIVE - Create comprehensive documentation
-   QA - Validate technical implementation (can be called from any mode)
+   /van → /build → /reflect → /archive
    ```
 
-4. **Starting to work with your project**:
-   
-After successfully installing Memory Bank...
+   **Level 2 (Simple Enhancement):**
+   ```
+   /van → /plan → /build → /reflect → /archive
+   ```
 
-## Core Files and Their Purposes
+   **Level 3-4 (Feature/System):**
+   ```
+   /van → /plan → /creative → /build → /reflect → /archive
+   ```
+
+### Command Reference
+
+#### `/van` - Initialization & Entry Point
+**Purpose:** Initialize Memory Bank, detect platform, determine task complexity, route to workflows.
+
+**Usage:**
+```
+/van [task description]
+```
+
+**What it does:**
+- Detects your operating system and adapts commands
+- Verifies or creates Memory Bank structure
+- Analyzes task requirements
+- Determines complexity level (1-4)
+- Updates `memory-bank/tasks.md` with initial task information
+
+**Next steps:**
+- Level 1 → `/build`
+- Level 2-4 → `/plan`
+
+#### `/plan` - Task Planning
+**Purpose:** Create detailed implementation plans based on complexity level.
+
+**Usage:**
+```
+/plan
+```
+
+**What it does:**
+- Reads task requirements from `memory-bank/tasks.md`
+- Reviews codebase structure
+- Creates implementation plan (complexity-appropriate)
+- Performs technology validation (Level 2-4)
+- Identifies components requiring creative phases
+- Updates `memory-bank/tasks.md` with complete plan
+
+**Next steps:**
+- Creative phases identified → `/creative`
+- No creative phases → `/build`
+
+#### `/creative` - Design Decisions
+**Purpose:** Perform structured design exploration for flagged components.
+
+**Usage:**
+```
+/creative
+```
+
+**What it does:**
+- Reads components flagged for creative work from `memory-bank/tasks.md`
+- For each component, explores multiple design options
+- Analyzes pros/cons of each approach
+- Selects and documents recommended approach
+- Creates `memory-bank/creative/creative-[feature_name].md` documents
+- Updates `memory-bank/tasks.md` with design decisions
+
+**Next steps:**
+- After all creative phases complete → `/build`
+
+#### `/build` - Code Implementation
+**Purpose:** Implement planned changes following the plan and creative decisions.
+
+**Usage:**
+```
+/build
+```
+
+**What it does:**
+- Reads implementation plan from `memory-bank/tasks.md`
+- Reads creative phase documents (Level 3-4)
+- Implements changes systematically
+- Tests implementation
+- Documents commands executed and results
+- Updates `memory-bank/tasks.md` and `memory-bank/progress.md`
+
+**Next steps:**
+- After implementation complete → `/reflect`
+
+#### `/reflect` - Task Reflection
+**Purpose:** Facilitate structured reflection on completed implementation.
+
+**Usage:**
+```
+/reflect
+```
+
+**What it does:**
+- Reviews completed implementation
+- Compares against original plan
+- Documents what went well
+- Documents challenges encountered
+- Documents lessons learned
+- Documents process and technical improvements
+- Creates `memory-bank/reflection/reflection-[task_id].md`
+- Updates `memory-bank/tasks.md` with reflection status
+
+**Next steps:**
+- After reflection complete → `/archive`
+
+#### `/archive` - Task Archiving
+**Purpose:** Create comprehensive archive documentation and update Memory Bank.
+
+**Usage:**
+```
+/archive
+```
+
+**What it does:**
+- Reads reflection document and task details
+- Creates comprehensive archive document
+- Archives creative phase documents (Level 3-4)
+- Updates `memory-bank/tasks.md` marking task COMPLETE
+- Updates `memory-bank/progress.md` with archive reference
+- Resets `memory-bank/activeContext.md` for next task
+- Creates `memory-bank/archive/archive-[task_id].md`
+
+**Next steps:**
+- After archiving complete → `/van` (for next task)
+
+### Example Workflow
+
+Here's a complete example workflow for a Level 3 feature:
+
+```bash
+# Step 1: Initialize
+/van Add user authentication with OAuth2 support
+
+# Step 2: Plan (VAN routes to PLAN for Level 3)
+/plan
+
+# Step 3: Explore design options for OAuth integration
+/creative
+
+# Step 4: Implement the feature
+/build
+
+# Step 5: Reflect on the implementation
+/reflect
+
+# Step 6: Archive the completed task
+/archive
+```
+
+## Memory Bank Structure
+
+All Memory Bank files are stored in the `memory-bank/` directory:
 
 ```mermaid
 graph LR
-    subgraph "Memory Bank Files"
+    subgraph "Memory Bank Directory"
         Tasks["tasks.md<br>Source of Truth"]
         Active["activeContext.md<br>Current Focus"]
         Progress["progress.md<br>Implementation Status"]
-        Creative["creative-*.md<br>Design Decisions"]
-        Reflect["reflect-*.md<br>Review Documents"]
+        Brief["projectbrief.md<br>Project Foundation"]
+        Creative["creative/<br>Design Decisions"]
+        Reflect["reflection/<br>Review Documents"]
+        Archive["archive/<br>Completed Tasks"]
     end
     
     style Tasks fill:#f9d77e,stroke:#d9b95c,stroke-width:3px,color:black
     style Active fill:#a8d5ff,stroke:#88b5e0,color:black
     style Progress fill:#c5e8b7,stroke:#a5c897,color:black
+    style Brief fill:#d9b3ff,stroke:#b366ff,color:black
     style Creative fill:#f4b8c4,stroke:#d498a4,color:black
     style Reflect fill:#b3e6cc,stroke:#66c999,color:black
+    style Archive fill:#ffd9b3,stroke:#ffb366,color:black
 ```
 
-- **tasks.md**: Central source of truth for task tracking
-- **activeContext.md**: Maintains focus of current development phase
-- **progress.md**: Tracks implementation status
-- **creative-*.md**: Design decision documents generated during CREATIVE mode
-- **reflect-*.md**: Review documents created during REFLECT mode
+### Core Files
+
+- **`tasks.md`**: Central source of truth for task tracking, checklists, and component lists
+- **`activeContext.md`**: Maintains focus of current development phase
+- **`progress.md`**: Tracks implementation status and observations
+- **`projectbrief.md`**: Project foundation and context
+- **`productContext.md`**: Product-specific context and requirements
+- **`systemPatterns.md`**: System patterns and architectural decisions
+- **`techContext.md`**: Technical context and technology stack
+
+### Generated Files
+
+- **`creative/creative-[feature_name].md`**: Design decision documents (Level 3-4)
+- **`reflection/reflection-[task_id].md`**: Reflection documents
+- **`archive/archive-[task_id].md`**: Archive documents for completed tasks
+
+## Progressive Rule Loading
+
+Each command implements progressive rule loading to optimize context usage:
+
+1. **Core Rules** - Always loaded first
+   - `main.mdc` - System foundation
+   - `memory-bank-paths.mdc` - File path definitions
+
+2. **Command-Specific Rules** - Loaded based on command
+   - Visual process maps (e.g., `van-mode-map.mdc`)
+   - Command-specific workflows
+
+3. **Complexity-Specific Rules** - Loaded based on task complexity
+   - Level 1: `workflow-level1.mdc`
+   - Level 2: `workflow-level2.mdc`, `task-tracking-basic.mdc`
+   - Level 3: `workflow-level3.mdc`, `planning-comprehensive.mdc`
+   - Level 4: `workflow-level4.mdc`, `architectural-planning.mdc`
+
+4. **Specialized Rules** - Lazy loaded only when needed
+   - Creative phase types (architecture, UI/UX, algorithm)
+   - Advanced verification rules
+   - Platform-specific adaptations
+
+This approach reduces initial token usage by **~70%** compared to loading all rules at once.
+
+## Complexity Levels
+
+Memory Bank adapts its workflow based on task complexity:
+
+### Level 1: Quick Bug Fix
+- **Workflow**: `/van` → `/build` → `/reflect` → `/archive`
+- **Characteristics**: Single file changes, targeted fixes
+- **Documentation**: Minimal, focused on the fix
+
+### Level 2: Simple Enhancement
+- **Workflow**: `/van` → `/plan` → `/build` → `/reflect` → `/archive`
+- **Characteristics**: Multiple files, clear requirements
+- **Documentation**: Basic plan, implementation steps
+
+### Level 3: Intermediate Feature
+- **Workflow**: `/van` → `/plan` → `/creative` → `/build` → `/reflect` → `/archive`
+- **Characteristics**: New components, design decisions needed
+- **Documentation**: Comprehensive plan, creative phases, detailed reflection
+
+### Level 4: Complex System
+- **Workflow**: `/van` → `/plan` → `/creative` → `/build` → `/reflect` → `/archive`
+- **Characteristics**: Multiple subsystems, architectural decisions
+- **Documentation**: Phased implementation, architectural diagrams, comprehensive archive
 
 ## Troubleshooting
 
-### Common Issues
+### Commands Not Appearing
 
-1. **Mode not responding correctly**:
-   - Verify custom instructions were copied completely (this is the most common issue)
-   - Ensure the correct tools are enabled for each mode
-   - Check that you've switched to the correct mode before issuing commands
-   - Make sure you pasted the instructions in the "Advanced options" text box
+- **Verify Cursor version**: Ensure you're using Cursor 2.0 or higher
+- **Check file location**: Ensure `.cursor/commands/` directory exists in project root
+- **Restart Cursor**: Sometimes a restart is needed to detect new commands
 
-2. **Rules not loading**:
-   - Make sure the `.cursor/rules/isolation_rules/` directory is in the correct location
-   - Verify file permissions allow reading the rule files
+### Command Not Working Correctly
 
-3. **Command execution issues**:
-   - Ensure you're running commands from the correct directory
-   - Verify platform-specific commands are being used correctly
+- **Check Memory Bank**: Verify `memory-bank/` directory exists
+- **Verify task status**: Check `memory-bank/tasks.md` for current task state
+- **Review command order**: Ensure you're following the correct workflow sequence
+- **Check rules**: Verify `.cursor/rules/isolation_rules/` directory exists
+
+### Rules Not Loading
+
+- **Verify file paths**: Ensure rule files are in `.cursor/rules/isolation_rules/`
+- **Check file permissions**: Verify files are readable
+- **Review command logs**: Check what rules the command is trying to load
+
+### Memory Bank Issues
+
+- **Missing files**: Run `/van` to initialize Memory Bank structure
+- **Corrupted state**: Check `memory-bank/tasks.md` for task status
+- **File conflicts**: Review recent changes to Memory Bank files
+
+## Legacy Custom Modes (Deprecated)
+
+> **Note**: Custom modes are deprecated in favor of Cursor 2.0 commands. If you're using Cursor 2.0+, please use commands instead. Custom modes setup instructions are available in the `custom_modes/` directory for reference only.
+
+If you're using an older version of Cursor that doesn't support commands, see the [Commands Migration Guide](COMMANDS_MIGRATION.md) for information about the legacy custom modes setup.
 
 ## Version Information
 
-This is version v0.7-beta of the Memory Bank system. It introduces significant token optimization improvements over v0.6-beta while maintaining all functionality. See the [Release Notes](RELEASE_NOTES.md) for detailed information about the changes.
+This is version v0.8 of the Memory Bank system. It introduces significant token optimization improvements over v0.7-beta while maintaining all functionality. See the [Release Notes](RELEASE_NOTES.md) for detailed information about the changes.
 
 ### Ongoing Development
 
@@ -282,13 +453,21 @@ The Memory Bank system is actively being developed and improved. Key points to u
 
 ## Resources
 
+- [Commands Documentation](.cursor/commands/README.md) - Detailed command usage guide
+- [Commands Migration Guide](COMMANDS_MIGRATION.md) - Migration from custom modes to commands
 - [Memory Bank Optimizations](MEMORY_BANK_OPTIMIZATIONS.md) - Detailed overview of token efficiency improvements
 - [Release Notes](RELEASE_NOTES.md) - Information about the latest changes
-- [Cursor Custom Modes Documentation](https://docs.cursor.com/chat/custom-modes)
-- [Memory Bank Upgrade Guide](memory_bank_upgrade_guide.md)
-- [CREATIVE Mode and Claude's "Think" Tool](creative_mode_think_tool.md)
-- Mode-specific instruction files in the `custom_modes/` directory
+- [Memory Bank Upgrade Guide](memory_bank_upgrade_guide.md) - Understanding the new architecture
+- [CREATIVE Mode and Claude's "Think" Tool](creative_mode_think_tool.md) - Design methodology explanation
+
+## Contributing
+
+As mentioned in the personal note above, Memory Bank is a personal project. However, if you find it useful and want to adapt it for your own needs, you can:
+
+1. **Ask Cursor AI**: Modify the rules and commands directly using Cursor AI
+2. **Fork and Customize**: Clone the repository and adapt it to your workflow
+3. **Share Improvements**: If you make useful improvements, consider sharing them with the community
 
 ---
 
-*Note: This README is for v0.7-beta and subject to change as the system evolves.*
+*Note: This README is for v0.8 and subject to change as the system evolves.*
